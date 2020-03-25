@@ -133,7 +133,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    2.8k 字
+                    3k 字
                   </span>
                 
 
@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      10 分钟
+                      11 分钟
                   </span>
                 
 
@@ -202,7 +202,7 @@
     }</code></pre>
 <hr>
 <h4 id="类别二：链表的简单应用"><a href="#类别二：链表的简单应用" class="headerlink" title="类别二：链表的简单应用"></a><em>类别二：链表的简单应用</em></h4><h5 id="2、两数相加-medium"><a href="#2、两数相加-medium" class="headerlink" title="2、两数相加(medium)"></a>2、两数相加(medium)</h5><p><em>题目描述：</em></p>
-<p>给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。</p>
+<p>给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储一位数字。</p>
 <p>如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。</p>
 <p>您可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
 <p><em>示例：</em></p>
@@ -260,6 +260,51 @@
                 max = count;
         }
         return max;
+    }</code></pre>
+<h5 id="5、最长回文子串-medium"><a href="#5、最长回文子串-medium" class="headerlink" title="5、最长回文子串(medium)"></a>5、最长回文子串(medium)</h5><p><em>题目描述：</em></p>
+<p>给定一个字符串 <code>s</code>，找到 <code>s</code> 中最长的回文子串。你可以假设 <code>s</code> 的最大长度为 1000。</p>
+<p><em>示例：</em></p>
+<p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc5.png" srcset="/img/loading.gif" alt></p>
+<p><em>思考：</em></p>
+<p><em>最终代码</em></p>
+<pre><code class="c++">int ifcircle(string&amp; s, int i, int j){
+        int L = i, R = j;
+        if(s[L] != s[R])
+            return 0;
+        while(s[L] == s[R] &amp;&amp; L &gt; 0 &amp;&amp; R &lt; s.length()-1){
+            L--;
+            R++;
+        }
+        if(s[L] == s[R])
+            return R - L + 1;
+        else 
+            return R - L - 1;
+    }
+
+    string longestPalindrome(string s) {
+        int n = s.length();
+        int len1, len2, len;
+        int begin = 0, end = 0, max = 0;
+        for(int i = 0; i &lt; n; i++){
+            len1 = ifcircle(s, i, i);
+            len2 = ifcircle(s, i, i+1);
+            len = len1 &gt; len2 ?len1:len2;
+            if(len &gt; max){
+                if(len % 2){
+                    begin = i - (len - 1)/2;
+                    end = i + (len - 1)/2;
+                }
+                else{
+                    begin = i - (len - 1)/2;
+                    end = i + len / 2;
+                }
+                max = len;
+            }
+        }
+        if(max % 2)
+            return s.substr(begin, max);
+        else
+            return s.substr(begin, max);
     }</code></pre>
 <hr>
 <h4 id="类别四：二分查找的应用"><a href="#类别四：二分查找的应用" class="headerlink" title="类别四：二分查找的应用"></a><em>类别四：二分查找的应用</em></h4><h5 id="4、寻找两个有序数组的中位数-hard"><a href="#4、寻找两个有序数组的中位数-hard" class="headerlink" title="4、寻找两个有序数组的中位数(hard)"></a>4、寻找两个有序数组的中位数(hard)</h5><p><em>题目描述：</em></p>
