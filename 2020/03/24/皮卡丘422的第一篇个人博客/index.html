@@ -133,7 +133,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    3k 字
+                    3.9k 字
                   </span>
                 
 
@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      11 分钟
+                      14 分钟
                   </span>
                 
 
@@ -208,7 +208,7 @@
 <p><em>示例：</em></p>
 <p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc2.png" srcset="/img/loading.gif" alt></p>
 <p><em>思考：</em></p>
-<p>链表与顺序表的区别在于，链表的每一个结点信息，必须依靠上一个结点信息才能获得。</p>
+<p>链表与顺序表的区别在于，链表的每一个结点信息，必须依靠上一个结点信息才能获得。而整数之间相加，考虑的重点就是进位。本题中，由于链表本身就是逆序放置，我们只需要从链表首结点开始依次加入L1，L2的结点值，这里既可以新生成一个结点用于保存，也可以用原结点。同时需要一个格外的bool型变量用于确定是否发生了进位。由于L1，L2链表长度不一定相等，同时在链表尾也存在进位的可能，所以要注意最后若<code>count ==1</code>需要对结尾处再增加一个结点。</p>
 <p><em>最终代码</em></p>
 <pre><code class="c++">ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         ListNode*  T = new ListNode(-1);
@@ -242,6 +242,7 @@
 <p><em>示例：</em></p>
 <p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc3.png" srcset="/img/loading.gif" alt></p>
 <p><em>思考：</em></p>
+<p>题目要求取得不含重复字符的最长子串，我开始给出的方案就是按照从头到尾的顺序，依次作为子串开头，然后再进行一遍循环判断子串长度，当然我们这里判断是否出现了重复字符的手段为将<code>i</code>作为子串的最后一个字符，而将<code>p</code>指向子串的第一个字符，这样当向后遍历时，若出现重复可以通过<code>p = j+1</code>的手段减少<code>j</code>的循环次数。但毫无疑问，这个方法属于暴力解，时间复杂度达到了<em>O</em>（n^2）。那么有没有<em>O</em>（n）的时间复杂度呢？当然有，但同时代价是空间复杂度也达到了<em>O</em>（n）。方法就是依靠滑动窗口思想，并利用c++提供的关联容器<code>unordered_set</code>来进行存储已存在的字符，右指针通过不断读入新字符，当出现重复字符时，通过移动左指针来消除重复字符，由于<code>unordered_set</code>采用hash表进行查找，所以时间复杂度为<em>O</em>（1），则综合时间复杂度为<em>O</em>（n）。相关代码略。</p>
 <p><em>最终代码</em></p>
 <pre><code class="c++">int lengthOfLongestSubstring(string s) {
         int l = s.length();
@@ -266,6 +267,7 @@
 <p><em>示例：</em></p>
 <p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc5.png" srcset="/img/loading.gif" alt></p>
 <p><em>思考：</em></p>
+<p>回文串是算法题目中特别常见的题目，证明一个串是回文串的方法，既可以从两端向中间移动，也可以由中心向两端扩展，而为了减少重复判断的内容，显然后者更加适合判断回文串。这里有一点需要注意的是，由中心扩展存在两个问题，奇数中心与偶数中心，所以这两种情况均需要考虑。此时时间复杂度为<em>O</em>（n^2）。同时，此类题也有另外的解决办法，那就是动态规划，动态规划适合做什么样的题呢？就是可以把题目分隔开，假设字符串总长度100，那么我只要知道前99的结果，再把第100加入判断，就可以得到前100的结果。这就是数学归纳法的思想。由于本题目动态规划同样要用到一轮确定回文子串长度的遍历，加上总串的逐一遍历，时间复杂度同样为<em>O</em>（n^2），而空间复杂度由于要保存前面所有长度时的结果，同样达到了<em>O</em>（n^2），所有这里我们暂略。</p>
 <p><em>最终代码</em></p>
 <pre><code class="c++">int ifcircle(string&amp; s, int i, int j){
         int L = i, R = j;
@@ -314,6 +316,7 @@
 <p><em>示例：</em></p>
 <p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc4.png" srcset="/img/loading.gif" alt></p>
 <p><em>思考：</em></p>
+<p>找中位数的题目也是算法中特别常见的，依据其是否有序，可以考虑应用二分查找。本题目要求时间复杂度为<em>O</em>(log(m + n))，那么就必须从二分查找入手考虑问题。（当然还有堆排序、分治算法的方式可能满足O(log(m + n))）不失一般性的，我们可以让短数组为<code>nums1</code>，长数组为<code>nums2</code>，为了最小化时间复杂度，我们考虑这样的情况，</p>
 <p><em>最终代码</em></p>
 <pre><code class="c++">double findMedianSortedArrays(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) {
         if(nums1.size() &gt; nums2.size())
