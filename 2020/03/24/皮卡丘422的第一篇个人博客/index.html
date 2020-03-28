@@ -133,7 +133,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    3.9k 字
+                    5.9k 字
                   </span>
                 
 
@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      14 分钟
+                      23 分钟
                   </span>
                 
 
@@ -199,6 +199,29 @@
             m[nums[i]] = i;
         }
         return {};
+    }</code></pre>
+<h5 id="11、盛最多水的容器-medium"><a href="#11、盛最多水的容器-medium" class="headerlink" title="11、盛最多水的容器(medium)"></a>11、盛最多水的容器(medium)</h5><p><em>题目描述：</em></p>
+<p>给你 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</p>
+<p>说明：你不能倾斜容器，且 n 的值至少为 2。</p>
+<p><em>示例：</em></p>
+<p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc11.png" srcset="/img/loading.gif" alt></p>
+<p><em>思考：</em></p>
+<p><em>最终代码</em></p>
+<pre><code class="c++">int maxArea(vector&lt;int&gt;&amp; height) {
+        int len = height.size();
+        int i = 0, j = len-1;
+        int max = 0;
+        while(i &lt; j){
+            int dwarf = height[i] &lt; height[j] ?height[i]:height[j];
+            int area = dwarf * (j - i);
+            if(area &gt; max)
+                max = area;
+            if(height[i] &lt; height[j])
+                i++;
+            else
+                j--;
+        }
+        return max;
     }</code></pre>
 <hr>
 <h4 id="类别二：链表的简单应用"><a href="#类别二：链表的简单应用" class="headerlink" title="类别二：链表的简单应用"></a><em>类别二：链表的简单应用</em></h4><h5 id="2、两数相加-medium"><a href="#2、两数相加-medium" class="headerlink" title="2、两数相加(medium)"></a>2、两数相加(medium)</h5><p><em>题目描述：</em></p>
@@ -308,6 +331,88 @@
         else
             return s.substr(begin, max);
     }</code></pre>
+<h5 id="6、Z-字形变换-medium"><a href="#6、Z-字形变换-medium" class="headerlink" title="6、Z 字形变换(medium)"></a>6、Z 字形变换(medium)</h5><p><em>题目描述：</em></p>
+<p>将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。</p>
+<p>比如输入字符串为<code>&quot;LEETCODEISHIRING&quot;</code> 行数为 3 时，排列如下：</p>
+<p>L    C      I      R<br>E T O E  S  I  I  G<br>E    D     H     N<br>之后，你的输出需要从左往右逐行读取，产生出一个新的字符串，比如：<code>&quot;LCIRETOESIIGEDHN&quot;</code>。</p>
+<p>请你实现这个将字符串进行指定行数变换的函数：</p>
+<p><code>string convert(string s, int numRows);</code></p>
+<p><em>示例：</em></p>
+<p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc6.png" srcset="/img/loading.gif" alt></p>
+<p><em>思考：</em></p>
+<p>本题看似是道字符串的重排列问题，但实际是一道数学题。根据给定的行数，我们来确定每次循环发生转折的字符长度为<code>temp = 2 * (numRows - 1)</code>，在此基础上通过建立对应的坐标转换关系，从而确定原字符串中每个字符对应新排列位置，再依次叠加各层字符得到新的字符串。</p>
+<p><em>最终代码</em></p>
+<pre><code class="c++">string convert(string s, int numRows) {
+        if(numRows == 1){
+            return s;
+        }
+        int len = s.size();
+        vector&lt;string&gt; rows(min(numRows, len));
+        bool turn = false;
+        int temp = 2 * (numRows - 1);
+        for(int i = 0; i &lt; len; i++){
+            int j = i % (temp);
+            if(j &lt; numRows){
+                rows[j] += s[i];
+            }
+            else if(j &gt;= numRows){
+                rows[temp-j] += s[i];
+            }
+        }
+        string ans;
+        for (string row : rows) {// 从上到下遍历行
+            ans += row;
+        }
+        return ans;
+    }</code></pre>
+<h5 id="10、正则表达式匹配-hard"><a href="#10、正则表达式匹配-hard" class="headerlink" title="10、正则表达式匹配(hard)"></a>10、正则表达式匹配(hard)</h5><p><em>题目描述：</em></p>
+<p>给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 ‘.’ 和 ‘*’ 的正则表达式匹配。</p>
+<p>‘.’ 匹配任意单个字符<br>‘*’ 匹配零个或多个前面的那一个元素<br>所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。</p>
+<p>说明:</p>
+<p>s 可能为空，且只包含从 a-z 的小写字母。<br>p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。</p>
+<p><em>示例：</em></p>
+<p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc10.png" srcset="/img/loading.gif" alt></p>
+<p><em>思考：</em></p>
+<p>这道题目是一道比较难的算法题，从题目来看，由于是对字符串匹配进行的一个判断，那么首先可以考虑到的就是动态规划和回溯算法。同时解决的手段可能并不限于递归、深度优先遍历。我在接触这道题目的时候对于回溯算法和动态规划还不够了解，无法做到应用，就采用了当时比较熟悉的递归进行的解答。递归解答的关键就是要确定递归的出口，这里我们确定出口应为s，p两个字符串均读到了最后一位。对于‘.’的匹配相对容易，只要将其作为任意字符即可。而对于‘*’字符来说，考虑的出发点主要在于零次与多次的区别。我的设计角度为设置more与zero的bool型变量，zero的判断依靠p字符串的后数两位字符确定<code>zero = pipei(s, p, x, y+2, len1, len2);</code>，而more的判断建立在非zero的前提下，<code>more = pipei(s, p, x+1, y, len1, len2);</code>。由于两种情况均可能，所以两者应为“或”的关系。如果有时间可以用回溯或动态规划对题目重写。</p>
+<p><em>最终代码</em></p>
+<pre><code class="c++">bool pipei(string&amp; s, string&amp; p, int x, int y, int len1, int len2){
+        if(x == len1){
+            if(y == len2){
+                //cout &lt;&lt; x &lt;&lt; y &lt;&lt; endl;
+                return true;
+            }    
+
+        }
+        bool more = false, zero = false;
+        if(p[y+1] == &#39;*&#39; &amp;&amp; y + 1 &lt; len2){
+            zero = pipei(s, p, x, y+2, len1, len2);
+            //cout &lt;&lt; x &lt;&lt; y &lt;&lt; zero &lt;&lt; more &lt;&lt; endl;
+            if(zero == false &amp;&amp; (x &lt; len1) &amp;&amp; (s[x] == p[y] || p[y] == &#39;.&#39;)){
+                more = pipei(s, p, x+1, y, len1, len2);
+                //cout &lt;&lt; x &lt;&lt; y &lt;&lt; zero &lt;&lt; more &lt;&lt; endl;
+            }
+            return zero || more;
+        }
+        else{
+            if((x &lt; len1) &amp;&amp; (s[x] == p[y] || p[y] == &#39;.&#39;)){
+                //cout &lt;&lt; x &lt;&lt; y &lt;&lt; zero &lt;&lt; more &lt;&lt; endl;
+                return pipei(s, p, x+1, y+1, len1, len2);
+            }
+            else{
+                //cout &lt;&lt; x &lt;&lt; y &lt;&lt; zero &lt;&lt; more &lt;&lt; endl;
+                return false;
+            }
+        }
+        return false;
+
+    }
+    bool isMatch(string s, string p) {  
+        int len1 = s.size();
+        int len2 = p.size();
+        p = p + &#39;A&#39;;
+        bool ans = pipei(s, p, 0, 0, len1, len2);
+        return ans;
+    }</code></pre>
 <hr>
 <h4 id="类别四：二分查找的应用"><a href="#类别四：二分查找的应用" class="headerlink" title="类别四：二分查找的应用"></a><em>类别四：二分查找的应用</em></h4><h5 id="4、寻找两个有序数组的中位数-hard"><a href="#4、寻找两个有序数组的中位数-hard" class="headerlink" title="4、寻找两个有序数组的中位数(hard)"></a>4、寻找两个有序数组的中位数(hard)</h5><p><em>题目描述：</em></p>
 <p>给定两个大小为 m 和 n 的有序数组 <code>nums1</code> 和 <code>nums2</code>。</p>
@@ -316,7 +421,7 @@
 <p><em>示例：</em></p>
 <p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc4.png" srcset="/img/loading.gif" alt></p>
 <p><em>思考：</em></p>
-<p>找中位数的题目也是算法中特别常见的，依据其是否有序，可以考虑应用二分查找。本题目要求时间复杂度为<em>O</em>(log(m + n))，那么就必须从二分查找入手考虑问题。（当然还有堆排序、分治算法的方式可能满足O(log(m + n))）不失一般性的，我们可以让短数组为<code>nums1</code>，长数组为<code>nums2</code>，为了最小化时间复杂度，我们考虑这样的情况，</p>
+<p>找中位数的题目也是算法中特别常见的，依据其是否有序，可以考虑应用二分查找。本题目要求时间复杂度为<em>O</em>(log(m + n))，那么就必须从二分查找入手考虑问题。（当然还有堆排序、分治算法的方式可能满足O(log(m + n))）不失一般性的，我们可以让短数组为<code>nums1</code>，长数组为<code>nums2</code>（其实无影响），为了最小化时间复杂度，我们考虑这样的情况，一定存在<code>half = (m + n + 1)/2</code>个元素比中位数小的情况。基于这个情况，我们在短数组中计算一个中位数<code>mid1 = (a1 + a2)/2</code>，再在长数组中计算一个<code>mid2 = half - mid1</code>，后续通过两个位置<code>nums1[mid1]</code>，<code>nums2[mid2-1]</code>处的数值大小比较，进而确定中位数在<code>nums1</code>数组中的位置关系，这样的判断方法可以在O(logm）中完成对<code>nums1</code>的数据筛查。</p>
 <p><em>最终代码</em></p>
 <pre><code class="c++">double findMedianSortedArrays(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) {
         if(nums1.size() &gt; nums2.size())
@@ -356,6 +461,84 @@
             }
         }
         return 0.0;
+    }</code></pre>
+<hr>
+<h4 id="类别五：边界条件的考察"><a href="#类别五：边界条件的考察" class="headerlink" title="类别五：边界条件的考察"></a><em>类别五：边界条件的考察</em></h4><h5 id="8、字符串转换整数-atoi-medium"><a href="#8、字符串转换整数-atoi-medium" class="headerlink" title="8、字符串转换整数 (atoi)(medium)"></a>8、字符串转换整数 (atoi)(medium)</h5><p><em>题目描述：</em></p>
+<p>请你来实现一个 atoi 函数，使其能将字符串转换成整数。</p>
+<p>首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。</p>
+<p>当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。</p>
+<p>该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。</p>
+<p>注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。</p>
+<p>在任何情况下，若函数不能进行有效的转换时，请返回 0。</p>
+<p>说明：</p>
+<p>假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−2^31,  2^31 − 1]。如果数值超过这个范围，请返回  INT_MAX (2^31 − 1) 或 INT_MIN (−2^31) 。</p>
+<p><em>示例：</em></p>
+<p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc8.png" srcset="/img/loading.gif" alt></p>
+<p><em>思考：</em></p>
+<p>本题目是属于不难但分析起来特别恶心的那种，由于存在各种各样的边界情况，需要分开讨论。关于字符向数字转变可以由<code>str[i] - &#39;0&#39;</code>实现。其他需要注意的点为：1、不仅“-”可以成为数字开头，“+”同样可以。2、数字在超越整数边界条件的判断（2147483647，-2147483648）。我在当时完成题目时对结果的判断用到了很多bool型，同时存在很多命名问题，使得在后续回顾时对于判断条件云里雾里，这样做存在很大弊端，各位不要学我。</p>
+<p><em>最终代码</em></p>
+<pre><code class="c++">int myAtoi(string str) {
+        int len = str.size();
+        int i = 0, num = 0;
+        bool flag = false;
+        bool count1 = false;
+        bool count2 = false;
+        bool big = false;
+        bool number = false;
+        int n = 0;
+        while(i &lt; len){
+            if(str[i] == &#39; &#39;){
+                if(flag == false &amp;&amp; count1 == false &amp;&amp; count2 == false &amp;&amp; number == false)
+                    n++;
+                else
+                    break;
+            }
+            else if(str[i] == &#39;-&#39;){
+                if(flag == false &amp;&amp; count1 == false &amp;&amp; count2 == false &amp;&amp; number == false){      //防止遇到-25-566的情况
+                    flag = true;
+                    count1 = true;
+                }
+                else
+                    break;
+            }
+            else if(str[i] == &#39;+&#39;){
+                if(flag == false &amp;&amp; count1 == false &amp;&amp; count2 == false &amp;&amp; number == false){      
+                    count2 = true;
+                }
+                else
+                    break;
+            }
+            else if(str[i]&gt;=&#39;0&#39;&amp;&amp;str[i]&lt;=&#39;9&#39;){
+                number = true;
+                if(flag == true &amp;&amp; count1 == true &amp;&amp; count2 == false){
+                    num = 0 - (str[i] - &#39;0&#39;);
+                    count1 = false;
+                }
+                else if((((num == INT_MAX/10) &amp;&amp; (str[i] - &#39;0&#39; &lt;= 7)) || (num &lt; INT_MAX/10))&amp;&amp;(flag == false)){
+                    num = num * 10;
+                    num = num + (str[i] - &#39;0&#39;);
+                }
+                else if((((num == INT_MIN/10) &amp;&amp; (str[i] - &#39;0&#39; &lt;= 8)) || (num &gt; INT_MIN/10))&amp;&amp;(flag == true)){
+                    num = num * 10;
+                    num = num - (str[i] - &#39;0&#39;);
+                }
+                else 
+                    big = true;  
+             }
+            else
+                break;
+            i++;
+        }
+        if(num){
+            if(big &amp;&amp; !flag)
+                return INT_MAX;
+            else if(big &amp;&amp; flag)
+                return INT_MIN;
+            else
+                return num;
+        }
+        else 
+            return 0;
     }</code></pre>
 <hr>
 <h4 id="类别四：二分查找的应用-1"><a href="#类别四：二分查找的应用-1" class="headerlink" title="类别四：二分查找的应用"></a><em>类别四：二分查找的应用</em></h4><h5 id="4、寻找两个有序数组的中位数-hard-1"><a href="#4、寻找两个有序数组的中位数-hard-1" class="headerlink" title="4、寻找两个有序数组的中位数(hard)"></a>4、寻找两个有序数组的中位数(hard)</h5><p><em>题目描述：</em></p>

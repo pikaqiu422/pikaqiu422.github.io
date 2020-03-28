@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>大话设计模式学习笔记 - 爱学习的皮卡皮卡</title>
+  <title>校园招聘面试--深信服 - 爱学习的皮卡皮卡</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -124,7 +124,7 @@
               
                 <p class="mt-3 post-meta">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-                  星期三, 三月 25日 2020, 8:27 晚上
+                  星期五, 三月 27日 2020, 4:57 下午
                 </p>
               
 
@@ -133,7 +133,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    2.5k 字
+                    984 字
                   </span>
                 
 
@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      8 分钟
+                      3 分钟
                   </span>
                 
 
@@ -169,46 +169,38 @@
           <div class="post-content mx-auto" id="post">
             
             <div class="markdown-body">
-              <h2 id="学习书目《大话设计模式》，程杰著"><a href="#学习书目《大话设计模式》，程杰著" class="headerlink" title="学习书目《大话设计模式》，程杰著"></a>学习书目《大话设计模式》，程杰著</h2><h4 id="Date-2020-3-25"><a href="#Date-2020-3-25" class="headerlink" title="Date:2020-3-25"></a><em>Date:2020-3-25</em></h4><h4 id="草堂春睡足，窗外日迟迟"><a href="#草堂春睡足，窗外日迟迟" class="headerlink" title="草堂春睡足，窗外日迟迟"></a><center><em>草堂春睡足，窗外日迟迟</em></center></h4><p>根据b站up主codesheep的建议，我近期买了《大话设计模式》一书，今天到货，富有色彩和卡通性的外皮，我就知道，这一定是一本读起来很轻松的书。</p>
-<p>想想看，好像已经很久没有这样读书了。大学懒了四年，当年那个抱着《明朝那些事儿》，抱着《辞海》都能翻烂的自己哪里去了？喜欢这个信息化高速发展的世界，但它的很多弊端也深深影响了我们自己，浮躁，追求即时性的交互和快感，这不，完成这篇学习笔记中间，我又躺床上看了半个小时直播。痛定思痛，从这本书开始，我要努力找回当初的那个自己，学下去，沉下去。</p>
-<p>说到这本书，仅仅阅读了一个半小时的时间，我就有了很多收获。内容上以小菜和老鸟（当然，因为很多基础不牢靠。我不得不中间跳转至附录先对基本知识打个底）的日常生活对话引出。就第一篇从面向过程的编程思想向面向对象的编程思想的转变，就足够的浅显易懂。<strong>面向对象</strong>我知道了很久，但一直用不起来，虽然其四大特点：</p>
-<ol>
-<li>可维护性</li>
-<li>可复用性</li>
-<li>可扩展性</li>
-<li>灵活性好</li>
+              <p>2020-3-28日上午11：00将参加<strong>深信服公司C/C++开发工程师</strong>职位电话面试（校招）</p>
+<h3 id="面试前相关面试经验查询与准备："><a href="#面试前相关面试经验查询与准备：" class="headerlink" title="面试前相关面试经验查询与准备："></a><strong><em>面试前相关面试经验查询与准备：</em></strong></h3><p>资源一：来源CSDN博主「青龙指引你」<a href="https://blog.csdn.net/xp731574722/article/details/82868560" target="_blank" rel="noopener">https://blog.csdn.net/xp731574722/article/details/82868560</a></p>
+<p>资源二：来源CSDN博主「Secur17y」<a href="https://blog.csdn.net/Secur17y/java/article/details/100122199" target="_blank" rel="noopener">https://blog.csdn.net/Secur17y/java/article/details/100122199</a></p>
+<h4 id="C-C-语言基础："><a href="#C-C-语言基础：" class="headerlink" title="C/C++语言基础："></a><em>C/C++语言基础：</em></h4><h5 id="1-new和malloc的区别？"><a href="#1-new和malloc的区别？" class="headerlink" title="1.new和malloc的区别？"></a>1.new和malloc的区别？</h5><p><code>new/delete</code>是C++操作符，<code>malloc/free</code>是库函数<br><code>new</code>自行计算需要空间的大小，<code>malloc</code>需要指定大小<br><code>new</code>从<strong>自由存储区</strong>分配内存，<code>malloc</code>从<strong>堆</strong>上分配内存<br><code>new</code>在分配内存时调用构造函数,<code>delete</code>在释放内存时调用析构函数，<code>malloc</code>只分配内存<strong>不做初始化</strong><br>在分配内存失败时,<code>new</code>抛出<code>bac_alloc</code>异常，<code>malloc</code>则返回<code>NULL</code></p>
+<h5 id="2-strcpy与memcpy的区别"><a href="#2-strcpy与memcpy的区别" class="headerlink" title="2.strcpy与memcpy的区别?"></a>2.strcpy与memcpy的区别?</h5><p>1、复制的内容不同。strcpy只能复制字符串，而memcpy可以复制任意内容，例如字符数组、整型、结构体、类等。<br>2、复制的方法不同。strcpy不需要指定长度，它遇到被复制字符的串结束符”\0”才结束，所以容易溢出。memcpy则是根据其第3个参数决定复制的长度。<br>3、用途不同。通常在复制字符串时用strcpy，而需要复制其他类型数据时则一般用memcpy</p>
+<h5 id="3-C如何使用cpp文件的函数"><a href="#3-C如何使用cpp文件的函数" class="headerlink" title="3.C如何使用cpp文件的函数?"></a>3.C如何使用cpp文件的函数?</h5><p>用<code>extern &quot;C&quot;</code>。</p>
+<h5 id="4-struct内存问题？"><a href="#4-struct内存问题？" class="headerlink" title="4.struct内存问题？"></a>4.struct内存问题？</h5><p>内存对齐会将依次向结构内变量扩展，最小单位为最长的变量的长度。</p>
+<p>如：</p>
+<pre><code class="c">struct A
+{
+    char a;   //char为1字节
+    long b;   //long为4字节，所以char也扩展为4字节，总长度为8字节
+    char c;      //long为4字节，所以char也扩展为4字节，总长度为12字节
+    double d; //double为8字节，所以前者扩展为8*2字节，总长度为24字节
+};</code></pre>
+<h5 id="5-不同文件中如何引用外部变量？"><a href="#5-不同文件中如何引用外部变量？" class="headerlink" title="5.不同文件中如何引用外部变量？"></a>5.不同文件中如何引用外部变量？</h5><p>全局变量或者<code>extern</code>。</p>
+<h5 id="6-C-中拷贝构造函数形参用值来进行传递有什么影响？"><a href="#6-C-中拷贝构造函数形参用值来进行传递有什么影响？" class="headerlink" title="6.C++中拷贝构造函数形参用值来进行传递有什么影响？"></a>6.C++中拷贝构造函数形参用值来进行传递有什么影响？</h5><p>形如CClass(const CClass c_class)会在传值的过程中调用拷贝构造函数，从而达到死循环。</p>
+<h5 id="7-红黑树较AVL树的优点"><a href="#7-红黑树较AVL树的优点" class="headerlink" title="7.红黑树较AVL树的优点"></a>7.红黑树较AVL树的优点</h5><p>AVL 树是高度平衡的，频繁的插入和删除，会引起频繁的rebalance，导致效率下降；红黑树不是高度平衡的，算是一种折中，插入最多两次旋转，删除最多三次旋转。</p>
+<p>所以红黑树在查找，插入删除的性能都是O(logn)，且性能稳定，所以STL里面很多结构包括map底层实现都是使用的红黑树。</p>
+<h5 id="8-用memcmp比较两个struct"><a href="#8-用memcmp比较两个struct" class="headerlink" title="8.用memcmp比较两个struct"></a>8.用memcmp比较两个struct</h5><ol>
+<li>结构体成员都是同样字节长度的数据类型，即长度一致，不会由字节对齐而产生垃圾值；</li>
+<li>如果结构体在赋值前调用memset进行了清零初始化操作，那么字节对齐是填充的内容均是0。</li>
 </ol>
-<p>众所周知，但是却一直无法用在实处，用编程语言的话说，就是不能<strong>实例化</strong>，真正地做到对这个概念“初始化”。通过本文中老鸟对于小菜关于计算器的设计思想的几个建议，我确实体会到了面向对象编程的魅力。</p>
-<p>面向对象，就是要通过封装、继承、多态的方式，降低程序的耦合性，就是以一种最低的代价将来可以对程序进行修改和补充。这个过程中，我觉得最重要的就是抓住程序中具体功能的普遍性，将其拿出来，独立成块。</p>
-<p>怎么抓呢？譬如计算器的设计，其核心就是计算和显示两个部分。如果用过程化的思想来设计，就是输入什么，做什么，得到什么。而对象化的思想是什么呢？计算是一块，显示是一块。对于计算，我们将所有的计算方式放在一个类中，就像活字印刷术，哪里错了改哪里。建一个小房子，让+、-、<em>、/，住进去，需要怎么算，就让运算的数字去敲门，找到对应的运算符号，这就是*</em>封装**。</p>
-<p>惭愧惭愧，读到1.9的章节时，基础薄弱的毛病暴露出来了，只能听从作者的建议先去附录处把基础打牢实，以下内容为附录A.1-A.5的内容理解。</p>
-<p>不抄概念，用自己的话说，我们将这个世界的凡此种种都当做一个<strong>对象</strong>，有共同特点的对象，就是一个<strong>类</strong>，比如哺乳动物、爬行动物。我们划好类，再通过<strong>实例化</strong>来生成一个对象，生成一个对象的方式有很多种，比如卵生、胎生，这就是不同的<strong>构造函数</strong>以及他们之间的<strong>重载</strong>关系。</p>
-<p>什么是属性，什么是字段呢？通常来说，<strong>属性</strong>位于public中，是任何其他类都可以访问的，也就是一个方法，一个函数。而<strong>字段</strong>呢，就是变量，就是private中，本类成员所独有的。哪怕是本类的子类都不可以访问他们，这样就能做到保护一个类的隐私权。那么本类对象该如何访问呢，就是get和set，get用于读取私有变量，set用于设置私有变量。</p>
-<p>ps：代码规范化新知识：</p>
-<ul>
-<li><code>string A;</code>这样的命名方式是不规范的，我们不清楚A到底是什么，而我以前却习惯随手这样命名，当时是简单了，偷懒了，以后翻起来想看，真是云里雾里，参考形式<code>string strNumberA</code>。</li>
-<li>在写判断语句的时候，能不要重复判断就不要重复判断，多支路的时候多用switch函数。</li>
-<li>边界条件能考虑就要考虑，还有非法输入，要扼杀在摇篮里，提高程序的鲁棒性。</li>
-<li>类名首字母大写，多单词各个首字母大写，方便见文知意。</li>
-<li>属性（函数体）以大写字母开头，字段（变量）以小写字母或者下划线开头。</li>
-</ul>
-<p>今日事今日毕，2020-3-25记。</p>
 <hr>
-<h4 id="Date-2020-3-26"><a href="#Date-2020-3-26" class="headerlink" title="Date:2020-3-26"></a><em>Date:2020-3-26</em></h4><h4 id="问渠哪得清如水，为有源头活水来"><a href="#问渠哪得清如水，为有源头活水来" class="headerlink" title="问渠哪得清如水，为有源头活水来"></a><center><em>问渠哪得清如水，为有源头活水来</em></center></h4><p>接着昨天的学习，昨天学习了面向对象语言中子类与父类之间的区别，那么两者之间的关系是如何传递的呢，是<strong>继承</strong>，就是将子类的公共部分尽可能的放在父类中。两者的关系应该是“is-a”，而不是“has-a”，这点也说明依靠继承作为枢纽不是越多越好。</p>
-<p>同一父类下的各个子类想要执行相同的动作，就需要用到他们自己的代码来实现，这也就是<strong>多态</strong>，书中举到的京剧的例子特别好，儿子为了接替父亲的工作，还同时要保有自己的特色，这就是多态。想要完全接替父类实现，需要依靠virtual关键字和override，前者在父类中将方法抽象化，后者则在子类中实现方法覆写。</p>
-<p>抽象类的定义很简单，实例化没有任何意义，对应的关键字abstract，同时没有方法体，这与树结构中的枝干不谋而合，而叶子正是可实例化的具体类。</p>
-<p>为了使彼此不同的类之间在某些功能相同的代码上可以复用，就引申出接口interface的概念。接口有很多要求，最重要的一点是命名需要前面加大写”I“，类名与接口用“，”分隔。据此，我们认清楚了在面向对象编程中，是通过重构得到了抽象类，而接口却是往往在类生成之前就已经提出。</p>
-<p>最后是关于委托的概念，delegate委托对象，event事件对象，简单的来说，就是形成一个委托函数，当作为自变量的类引出某种操作后，书中为猫叫，那么作为因变量的类也就是在委托中的事件对象就要收到信息，书中为老鼠跑。换言之，event是一个由delegate组成的容器，当事件发生了，就把受到影响的delegate加入其中（个人理解）。</p>
-<p>以上就是关于附录A的全部学习内容，明天继续正片内容，2020-3-26记。</p>
+<h4 id="数据结构与算法："><a href="#数据结构与算法：" class="headerlink" title="数据结构与算法："></a><em>数据结构与算法：</em></h4><h5 id="1-中国象棋跳马问题"><a href="#1-中国象棋跳马问题" class="headerlink" title="1.中国象棋跳马问题"></a>1.中国象棋跳马问题</h5><p>如果只需要知道最短步数：广度优先遍历。</p>
+<p>如果需要知道最短步数与相应步骤：广度优先遍历后接深度优先遍历。</p>
+<h5 id="2-青蛙跳台阶的问题"><a href="#2-青蛙跳台阶的问题" class="headerlink" title="2.青蛙跳台阶的问题"></a>2.青蛙跳台阶的问题</h5><p>递归或动态规划。</p>
+<h5 id="3-N个点的网络，求任意两点的最短路径"><a href="#3-N个点的网络，求任意两点的最短路径" class="headerlink" title="3.N个点的网络，求任意两点的最短路径"></a>3.N个点的网络，求任意两点的最短路径</h5><p>如果查询次数很少则用单源最短路Dijkstra（每次选择离集合最近的一个点加入集合）,查询次数很多则用Floyd（依次选择结点为中间结点，比较原长度和通过中间结点后的长度）。</p>
+<h5 id="4-4亿个数，你只有1G内存，你怎么判断某个数已经出现？"><a href="#4-4亿个数，你只有1G内存，你怎么判断某个数已经出现？" class="headerlink" title="4.4亿个数，你只有1G内存，你怎么判断某个数已经出现？"></a>4.4亿个数，你只有1G内存，你怎么判断某个数已经出现？</h5><p>1G内存即为2^30B=2^33bits，那么由于int型一共为2^32个左右，那么通过2进制表示每个数，若概述出现，则对应该位置一。</p>
+<h5 id="5-两个水晶球确定楼层问题"><a href="#5-两个水晶球确定楼层问题" class="headerlink" title="5.两个水晶球确定楼层问题"></a>5.两个水晶球确定楼层问题</h5><p>通过x+(x-1)+(x-2)…+1来确定x的值。</p>
 <hr>
-<h4 id="Date-2020-3-27"><a href="#Date-2020-3-27" class="headerlink" title="Date:2020-3-27"></a><em>Date:2020-3-27</em></h4><h4 id="临阵磨枪，不快也光"><a href="#临阵磨枪，不快也光" class="headerlink" title="临阵磨枪，不快也光"></a><center><em>临阵磨枪，不快也光</em></center></h4><p>今天学习了两种基本的设计模式，简单工厂模式和策略模式。开始看得有点云里雾里，没能看出两者之间显著的区别和优劣势。题目涉及建立一个商场买卖交易系统，这个系统在计算出用户购买的物品价格的同时，还需要对于不同的优惠方案（满减与打折）能够提供不同的解决方案。</p>
-<p>由于不同的物品之间可能享有不同的优惠活动，我的第一个想法就是将计算每件物品的总价后，转入一个计算优惠的类中，该类将派生出原价类，满减类和打折类。通过读入不同的选择，对商品转入不同的类进行计算。在简单工厂模式中，客户端程序通过<code>CashFactory</code>确定不同的优惠活动，可以生成不同的<code>CashSuper</code>对象，由于<code>CashSuper</code>为抽象类，那么就可以依靠多态的特性来确定最后的价格。之后大鸟提出，商家会经常性地改变定价策略，那么维护起来这段代码就会变得比较繁琐，既要在客户端程序中修改选择框的内容，也要在<code>CashFactory</code>中添加相应的条件。换言之，客户端需要既知道<code>CashFactory</code>，也知道<code>CashSuper</code>。</p>
-<p>而策略模式所追求的，就是将仅有算法所影响的部分放在一起，将算法封装起来，需要的时候进行调用。这样做的好处就是，客户端可以不知道算法细节，也就是说将在客户端放置的switch函数可以移出，减少了客户端每次进行判断所花费的时长。</p>
-<p>但到这里，我依旧没有很好地将两种设计模式相区分，总结一下，简单工厂模式中需要设计五个类以及一个客户端。其中由一个抽象类作为三种优惠模式的基类，同时还有三种优惠模式各自对应的派生类，以及一个名为现金收费工厂类。现金收费工程类中，依据在客户端中选择的不同优惠条件返回不同的对象。</p>
-<p>在策略模式中同样有五个类，其中基类与三个派生类不变，唯一区别的在于<code>CashFactory</code>与<code>CashContext</code>。我发现两者的区别在于判断的位置发生了变换。<code>CashFactory</code>中进行了判断，而<code>CashContext</code>将判断放在了基类产生派生类的过程中。可能如此这般，就实现了算法的整合封装。</p>
-<p>明天要参加深信服的电话面试，今天就先到这里为止，策略模式的结尾文中提到了改善switch函数的方法即反射技术，后续再深入研究，2020-3-27记。</p>
-<hr>
-<h4 id="Date-2020-3-28"><a href="#Date-2020-3-28" class="headerlink" title="Date:2020-3-28"></a><em>Date:2020-3-28</em></h4>
+
             </div>
             <hr>
             <div>
@@ -218,7 +210,7 @@
                   <span>
                 <i class="iconfont icon-tag"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+                      <a class="hover-with-bg" href="/tags/%E6%8B%9B%E8%81%98%E7%BB%8F%E9%AA%8C/">招聘经验</a>
                     
                   </span>
                 
@@ -231,18 +223,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/03/27/%E6%A0%A1%E5%9B%AD%E6%8B%9B%E8%81%98%E9%9D%A2%E8%AF%95-%E6%B7%B1%E4%BF%A1%E6%9C%8D/">
-                        <i class="fa fa-chevron-left"></i>
-                        <span class="hidden-mobile">校园招聘面试--深信服</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/03/25/JAVA%E4%BB%8E%E9%9B%B6%E5%8D%95%E6%8E%92%E2%80%94%E2%80%94%E9%9A%BE%E9%A2%98%E9%94%99%E9%A2%98%E7%AF%87/">
-                        <span class="hidden-mobile">JAVA从零单排——难题错题篇</span>
+                      <a href="/2020/03/25/%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="hidden-mobile">大话设计模式学习笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="fa fa-chevron-right"></i>
                       </a>
@@ -421,7 +407,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "大话设计模式学习笔记&nbsp;",
+        "校园招聘面试--深信服&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
