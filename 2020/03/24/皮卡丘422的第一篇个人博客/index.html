@@ -133,7 +133,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    5.9k 字
+                    9.2k 字
                   </span>
                 
 
@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      23 分钟
+                      38 分钟
                   </span>
                 
 
@@ -206,6 +206,7 @@
 <p><em>示例：</em></p>
 <p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc11.png" srcset="/img/loading.gif" alt></p>
 <p><em>思考：</em></p>
+<p>在数组中进行操作往往与双指针密不可分，本题对于双指针的应用很简单，由于确定的面积为较矮的那一边决定的，这就符合木桶原理，我们只要通过矮边与两边距离就可以确定容器可装水量，而双指针的修改也是每次将矮的那边向中心移动一格。</p>
 <p><em>最终代码</em></p>
 <pre><code class="c++">int maxArea(vector&lt;int&gt;&amp; height) {
         int len = height.size();
@@ -222,6 +223,114 @@
                 j--;
         }
         return max;
+    }</code></pre>
+<h5 id="15、三数之和-medium"><a href="#15、三数之和-medium" class="headerlink" title="15、三数之和(medium)"></a>15、三数之和(medium)</h5><p><em>题目描述：</em></p>
+<p>给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。</p>
+<p>注意：答案中不可以包含重复的三元组。</p>
+<p><em>示例：</em></p>
+<p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc15.png" srcset="/img/loading.gif" alt></p>
+<p><em>思考：</em></p>
+<p>首先说明，本题代码我反复出错，并且最后写的又臭又长，参考价值不大。简单的来说，本题依旧是一道双指针的题目。与第一题的区别在于本题这样的组合不止一组，我们需要全部输出。值得注意的是，由于三元组中可能存在相等的元素，所以在最后输出的集合中会有重复的集合存在，可以用erase函数进行删除重复（我后半段代码就实现了这个功能，但不如直接调用）。如何确定指针该指向何处呢？其实就是在求两数之和的基础上，先确定一个数<code>a</code>，那么<code>target-a</code>即为两数之和的求解。</p>
+<p><em>最终代码</em></p>
+<pre><code class="c++">vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) {
+        vector&lt;vector&lt;int&gt;&gt; ans;
+        vector&lt;int&gt; vtemp;
+        int len = nums.size();
+        if(len &lt; 3)
+            return ans;
+        sort(nums.begin(), nums.end());
+        for(int i = 0; i &lt; len-2; i++){
+            if(nums[i] &gt; 0)
+                break;
+            int mem1 = nums[i];
+            int j = i+1, k = len-1;
+            while(j &lt; k){
+                int sum = nums[i] + nums[j] + nums[k];
+                if(sum == 0){
+                    vector&lt;int&gt; vtemp{nums[i], nums[j], nums[k]};
+                    ans.push_back(vtemp);
+                    vtemp.clear();
+                    j++;
+                }
+                else if(sum &lt; 0 &amp;&amp; j &lt; k){
+                    j++;
+                }
+                else if(sum &gt; 0 &amp;&amp; j &lt; k){
+                    k--;
+                }
+            }
+            while(mem1 == nums[i+1] &amp;&amp; i &lt; len-3){
+                if(i &lt; len-3)
+                    i++;
+            }
+        }
+        sort(ans.begin(), ans.end());
+        vector&lt;vector&lt;int&gt;&gt; ans2;
+        int count = ans.size();
+        if(count == 0)
+            return ans2;
+        int las1 = ans[0][0], las2 = ans[0][1], las3 = ans[0][2];
+        ans2.push_back(ans[0]);
+        for(int i = 1; i &lt; count; i++){
+            if(ans[i][0] != las1 || ans[i][1] != las2 || ans[i][2] != las3){
+                ans2.push_back(ans[i]);
+                las1 = ans[i][0];
+                las2 = ans[i][1];
+                las3 = ans[i][2];
+            }
+        }
+        return ans2;
+    }</code></pre>
+<h5 id="31、下一个排列-medium"><a href="#31、下一个排列-medium" class="headerlink" title="31、下一个排列(medium)"></a>31、下一个排列(medium)</h5><p><em>题目描述：</em></p>
+<p>实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。</p>
+<p>如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。</p>
+<p>必须原地修改，只允许使用额外常数空间。</p>
+<p><em>示例：</em></p>
+<pre><code>1,2,3 → 1,3,2
+3,2,1 → 1,2,3
+1,1,5 → 1,5,1</code></pre><p><em>思考：</em></p>
+<p><em>最终代码</em></p>
+<pre><code class="c++">void nextPermutation(vector&lt;int&gt;&amp; nums) {
+        int len = nums.size();
+        if(len == 0 || len == 1)
+            return;
+        bool max = true;
+        for(int i = 0; i &lt; len-1; i++){
+            if(nums[i] &lt; nums[i+1])
+                max = false;
+        }
+        if(max){
+            sort(nums.begin(), nums.end());
+            return;
+        }
+        vector&lt;int&gt;::iterator j = nums.end()-2;
+        while(j &gt;= nums.begin()){
+            if(*j == nums[len-1])
+                j--;
+            else
+                break;
+        }
+        if(*j &lt; nums[len-1]){
+            int temp = nums[len-1];
+            nums[len-1] = *j;
+            *j = temp;
+            sort(j+1, nums.end());
+            return;
+        }
+        else{
+            while(*(j-1) &gt;= *j){
+                j--;
+            }
+            vector&lt;int&gt;::iterator i = nums.end()-1;
+            while(*i &lt;= *(j-1)){
+                i--;
+            }
+            int temp2 = *i;
+            *i = *(j-1);
+            *(j-1) = temp2;
+            sort(j, nums.end());
+            return;
+        }
     }</code></pre>
 <hr>
 <h4 id="类别二：链表的简单应用"><a href="#类别二：链表的简单应用" class="headerlink" title="类别二：链表的简单应用"></a><em>类别二：链表的简单应用</em></h4><h5 id="2、两数相加-medium"><a href="#2、两数相加-medium" class="headerlink" title="2、两数相加(medium)"></a>2、两数相加(medium)</h5><p><em>题目描述：</em></p>
@@ -258,6 +367,173 @@
             T-&gt;next = new ListNode(1);
         }
         return head-&gt;next;
+    }</code></pre>
+<h5 id="19、删除链表的倒数第N个节点-medium"><a href="#19、删除链表的倒数第N个节点-medium" class="headerlink" title="19、删除链表的倒数第N个节点(medium)"></a>19、删除链表的倒数第N个节点(medium)</h5><p><em>题目描述：</em></p>
+<p>给定一个链表，删除链表的倒数第 <em>n</em> 个节点，并且返回链表的头结点。</p>
+<p><em>示例：</em></p>
+<p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc19.png" srcset="/img/loading.gif" alt></p>
+<p><em>思考：</em></p>
+<p>本题既是一道链表的简单应用，也是一道双指针的题目。如何确定倒数第n个节点，其实就是找到倒数第n+1个节点的位置。思路就是设置两个指针，一个先走n+1步，然后两者开始同时移动，当先走的指针指向链表尾时，后走的指针正好指向倒数第n+1处。</p>
+<p><em>最终代码</em></p>
+<pre><code class="c++">ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* p;
+        ListNode* q;
+        ListNode* r;
+        p = head;
+        q = head;
+        if(p-&gt;next == NULL &amp;&amp; n == 1){
+            head = NULL;
+            return head;
+        }
+        while(n &gt; 0){
+            p = p-&gt;next;
+            n--;
+        }
+        if(p == NULL){
+            head = head-&gt;next;
+            return head;
+        }
+        while(p-&gt;next != NULL){
+            q = q-&gt;next;
+            p = p-&gt;next;
+        }
+        r = q-&gt;next;
+        if(r-&gt;next == NULL)
+            q-&gt;next = NULL;
+        else
+            q-&gt;next = r-&gt;next;
+        return head;
+    }</code></pre>
+<h5 id="23、合并K个排序链表-hard"><a href="#23、合并K个排序链表-hard" class="headerlink" title="23、合并K个排序链表(hard)"></a>23、合并K个排序链表(hard)</h5><p><em>题目描述：</em></p>
+<p>合并 <em>k</em> 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。</p>
+<p><em>示例：</em></p>
+<p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc23.png" srcset="/img/loading.gif" alt></p>
+<p><em>思考：</em></p>
+<p>这道题目归为hard，其实并不难，属于一道综合问题。题目的基础是两个链表有序排列，由此引申出题目的解题方法有很多种，可以每次加入一个链表，直到全部加入其中，但这样做时间复杂度高。很容易地想到归并排序，将链表两两一组，2，4，8，16。。。逐渐完成全部的有序化，值得注意的是要对k的奇偶性做出讨论。同时我学到的还有在c++中，nullptr表示空指针。</p>
+<p><em>最终代码</em></p>
+<pre><code class="c++">ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) {
+        ListNode* res;
+        int k = lists.size();
+        if(lists.empty()){
+            return nullptr;
+        }
+        else if(k == 1){
+            return lists[0];
+        }
+        else{
+            while(k &gt; 1){
+                int count;
+                if(k % 2){
+                    count = k - 1;
+                }
+                else    
+                    count = k;
+                for(int i = 0; i &lt; count; i++){
+                    lists[i/2] = mergetwo(lists[i], lists[i+1], lists);
+                    i++;
+                }
+                if(k % 2){
+                    lists[k/2] = lists[k-1];
+                    k = k / 2 + 1;
+                }
+                else
+                    k = k / 2;
+            }
+            return lists[0];
+        }
+    }
+    ListNode* mergetwo(ListNode* l1, ListNode* l2, vector&lt;ListNode*&gt;&amp; lists) {
+        ListNode* ans;
+        ListNode* p;
+        if(l1 == NULL &amp;&amp; l2 == NULL)
+            return ans;
+        else if(l1 != NULL &amp;&amp; l2 == NULL)
+            return l1;
+        else if(l1 == NULL &amp;&amp; l2 != NULL)
+            return l2;
+        if(l1-&gt;val &lt;= l2-&gt;val){
+            ans = l1;
+            l1 = l1-&gt;next;
+            p = ans;
+        }
+        else{
+            ans = l2;
+            l2 = l2-&gt;next;
+            p = ans;
+        }
+        while(l1 != NULL &amp;&amp; l2 !=NULL){
+            if(l1-&gt;val &lt;= l2-&gt;val){
+                p-&gt;next = l1;
+                l1 = l1-&gt;next;
+                p = p-&gt;next;
+            }
+            else{
+                p-&gt;next = l2;
+                l2 = l2-&gt;next;
+                p = p-&gt;next;
+            }
+        }
+        if(l1 != NULL){
+            p-&gt;next = l1;
+        }
+        if(l2 != NULL){
+            p-&gt;next = l2;
+        }
+        return ans;</code></pre>
+<h5 id="25、-K-个一组翻转链表-hard"><a href="#25、-K-个一组翻转链表-hard" class="headerlink" title="25、 K 个一组翻转链表(hard)"></a>25、 K 个一组翻转链表(hard)</h5><p><em>题目描述：</em></p>
+<p>给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。</p>
+<p>k 是一个正整数，它的值小于或等于链表的长度。</p>
+<p>如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。</p>
+<p>说明：</p>
+<p>你的算法只能使用常数的额外空间。<br>你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。</p>
+<p><em>示例：</em></p>
+<p>给你这个链表：1-&gt;2-&gt;3-&gt;4-&gt;5</p>
+<p>当 k = 2 时，应当返回: 2-&gt;1-&gt;4-&gt;3-&gt;5</p>
+<p>当 k = 3 时，应当返回: 3-&gt;2-&gt;1-&gt;4-&gt;5</p>
+<p><em>思考：</em></p>
+<p>我在这道题的实现中没有完成题目中常数额外空间的要求，而是模拟地将每k个节点先保存起来，再倒序链接起来。其实这里完全可以稍做修改，先确定剩下的节点是否有k个，再从开始处挨个倒转。当走到每个k个一组的最后一项时，再将上一组节点的第一项与其相连即可。若剩下的节点不足，则不进行变化。</p>
+<p><em>最终代码</em></p>
+<pre><code class="c++">ListNode* reverseKGroup(ListNode* head, int k) {
+        if(head == NULL)
+            return head;
+        ListNode* ans = new ListNode(-1);;
+        ListNode* p;
+        p = ans;
+        vector&lt;ListNode*&gt; temp;
+        int n = k;
+        while(head != NULL){
+            while(k){
+                if(head == NULL)
+                    break;
+                else{
+                    temp.push_back(head);
+                }
+                head = head-&gt;next;
+                k--;
+            }
+            if(temp.size() &lt; n)
+                break;
+            else if(temp.size() == n){
+                int i = n-1;
+                while(!temp.empty()){
+                    p-&gt;next = temp[i];
+                    temp.pop_back();
+                    p = p-&gt;next;
+                    i--;
+                }
+            }
+            k = n;
+        }
+        if(temp.empty())
+            p-&gt;next = nullptr;
+        else{
+            for(int i = 0; i &lt; temp.size(); i++){
+                p-&gt;next = temp[i];
+                p = p-&gt;next;
+            }
+            p-&gt;next = nullptr;
+        }
+        return ans-&gt;next;
     }</code></pre>
 <hr>
 <h4 id="类别三：字符串的简单应用"><a href="#类别三：字符串的简单应用" class="headerlink" title="类别三：字符串的简单应用"></a><em>类别三：字符串的简单应用</em></h4><h5 id="3、无重复字符的最长子串-medium"><a href="#3、无重复字符的最长子串-medium" class="headerlink" title="3、无重复字符的最长子串(medium)"></a>3、无重复字符的最长子串(medium)</h5><p><em>题目描述：</em></p>
@@ -373,7 +649,7 @@
 <p><em>示例：</em></p>
 <p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc10.png" srcset="/img/loading.gif" alt></p>
 <p><em>思考：</em></p>
-<p>这道题目是一道比较难的算法题，从题目来看，由于是对字符串匹配进行的一个判断，那么首先可以考虑到的就是动态规划和回溯算法。同时解决的手段可能并不限于递归、深度优先遍历。我在接触这道题目的时候对于回溯算法和动态规划还不够了解，无法做到应用，就采用了当时比较熟悉的递归进行的解答。递归解答的关键就是要确定递归的出口，这里我们确定出口应为s，p两个字符串均读到了最后一位。对于‘.’的匹配相对容易，只要将其作为任意字符即可。而对于‘*’字符来说，考虑的出发点主要在于零次与多次的区别。我的设计角度为设置more与zero的bool型变量，zero的判断依靠p字符串的后数两位字符确定<code>zero = pipei(s, p, x, y+2, len1, len2);</code>，而more的判断建立在非zero的前提下，<code>more = pipei(s, p, x+1, y, len1, len2);</code>。由于两种情况均可能，所以两者应为“或”的关系。如果有时间可以用回溯或动态规划对题目重写。</p>
+<p>这道题目是一道比较难的算法题，从题目来看，由于是对字符串匹配进行的一个判断，那么首先可以考虑到的就是动态规划和回溯算法。同时解决的手段可能并不限于递归、深度优先遍历。我在接触这道题目的时候对于回溯算法和动态规划还不够了解，无法做到应用，就采用了当时比较熟悉的递归进行的解答。递归解答的关键就是要确定递归的出口，这里我们确定出口应为s，p两个字符串均读到了最后一位。对于‘.’的匹配相对容易，只要将其作为任意字符即可。而对于‘*’字符来说，考虑的出发点主要在于零次与多次的区别。我的设计角度为设置more与zero的bool型变量，zero的判断依靠p字符串的后数两位字符确定<code>zero = pipei(s, p, x, y+2, len1, len2);</code>，而more的判断建立在非zero的前提下，<code>more = pipei(s, p, x+1, y, len1, len2);</code>。由于两种情况均可能，所以两者应为“或”的关系。值得一提的是，由于zero的判断式，我们存在x为len1-2，y为len2-2的情况，此时y+2为len2超出了边界条件。我的处理方式为在p字符串尾加入一个与所判断字符均不相同的字符（这里我加了”A”）。如果有时间可以用回溯或动态规划对题目重写。</p>
 <p><em>最终代码</em></p>
 <pre><code class="c++">bool pipei(string&amp; s, string&amp; p, int x, int y, int len1, int len2){
         if(x == len1){
@@ -411,6 +687,48 @@
         int len2 = p.size();
         p = p + &#39;A&#39;;
         bool ans = pipei(s, p, 0, 0, len1, len2);
+        return ans;
+    }</code></pre>
+<h5 id="30、串联所有单词的子串-hard"><a href="#30、串联所有单词的子串-hard" class="headerlink" title="30、串联所有单词的子串(hard)"></a>30、串联所有单词的子串(hard)</h5><p><em>题目描述：</em></p>
+<p>给定一个字符串 s 和一些长度相同的单词 words。找出 s 中恰好可以由 words 中所有单词串联形成的子串的起始位置。</p>
+<p>注意子串要与 words 中的单词完全匹配，中间不能有其他字符，但不需要考虑 words 中单词串联的顺序。</p>
+<p><em>示例：</em></p>
+<p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc30.png" srcset="/img/loading.gif" alt></p>
+<p><em>思考：</em></p>
+<p>本题给出的解决方法，是基于哈希表的匹配查找机制。思路很简单，由于子串长度为<code>wid*W</code>，那么外层循环的范围应该为<code>for(int i = 0; i &lt;= len-wid*W; i++)</code>，而对于每次循环，都一一对由<code>words</code>中所有元素组成的哈希表进行比对，若比对成功则满足输出条件，输出此时的<code>i</code>。本题思路清晰，不过当字符串总长度很长时，循环幅度很大，而从原字符串中截取<code>word</code>大小的子字符串也花费很多时间，总的来说时间复杂度还是偏高的。</p>
+<p><em>最终代码</em></p>
+<pre><code class="c++">vector&lt;int&gt; findSubstring(string s, vector&lt;string&gt;&amp; words) {
+        vector&lt;int&gt; ans;
+        int len = s.size();     //特殊情况 
+        if(len == 0)
+            return ans;
+        int wid = words.size();
+        if(wid == 0)
+            return ans;
+        int W = words[0].size();
+        if(W == 0)
+            return ans;
+        if(len &lt; wid*W)
+            return ans;
+        unordered_map&lt;string, int&gt; bz;
+        unordered_map&lt;string, int&gt; temp;
+        for(string t:words)
+            bz[t]++;
+        for(int i = 0; i &lt;= len-wid*W; i++){
+            temp = bz;
+            int j = 0;
+            while(j &lt; wid){
+                string xyz = s.substr(i+j*W, W);
+                if(temp[xyz] &gt; 0)
+                    temp[xyz]--;
+                else
+                    break;
+                j++;
+            }
+            if(j == wid)
+                ans.push_back(i);
+        }
+        //sort(ans.begin(), ans.end());
         return ans;
     }</code></pre>
 <hr>
@@ -539,6 +857,106 @@
         }
         else 
             return 0;
+    }</code></pre>
+<h5 id="29、两数相除-medium"><a href="#29、两数相除-medium" class="headerlink" title="29、两数相除(medium)"></a>29、两数相除(medium)</h5><p><em>题目描述：</em></p>
+<p>给定两个整数，被除数 <code>dividend</code> 和除数 <code>divisor</code>。将两数相除，要求不使用乘法、除法和 <code>mod</code>运算符。</p>
+<p>返回被除数 <code>dividend</code> 除以除数<code>divisor</code>得到的商。</p>
+<p>整数除法的结果应当截去（<code>truncate</code>）其小数部分，例如：<code>truncate(8.345) = 8</code> 以及 <code>truncate(-2.7335) = -2</code>。</p>
+<p>被除数和除数均为 32 位有符号整数。<br>除数不为 0。<br>假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−2^31,  2^31 − 1]。本题中，如果除法结果溢出，则返回 2^31 − 1。</p>
+<p><em>示例：</em></p>
+<p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc29.png" srcset="/img/loading.gif" alt></p>
+<p><em>思考：</em></p>
+<p>跟边界条件有关，这又是一道繁琐的题目。我对这道题边界条件的分析，更多地就是采取一种枚举的分析方式。首先就是<code>INT_MIN</code>除以<code>-1</code>会产生越界，其次，我通过<code>flag1</code>和<code>flag2</code>分别作为判断被除数和除数的符号位正负性的标志位。而对于<code>INT_MIN</code>越界的问题，我通过设置<code>change</code>标志位来将其转化为<code>INT_MAX</code>进行计算。由于题目要求我们不能用除法、乘法和<code>mod</code>运算符，所以解决除法运算的关键在于位运算，从被除数二进制数的最高位逐渐剥离，直到其小于除数，这样循环累加就能得到商。</p>
+<p><em>最终代码</em></p>
+<pre><code class="c++">int divide(int dividend, int divisor) {
+        if(dividend == INT_MIN &amp;&amp; divisor == -1)
+            return INT_MAX;
+        if(dividend == INT_MIN &amp;&amp; divisor == 1)
+            return INT_MIN;
+        if(dividend == INT_MIN &amp;&amp; divisor == INT_MIN)
+            return 1;
+        if(dividend &gt; INT_MIN &amp;&amp; divisor == INT_MIN)
+            return 0;
+        bool flag1 = false;
+        bool flag2 = false;
+        bool change = false;
+        if(dividend == INT_MIN){
+            dividend = INT_MAX;
+            change = true;
+            flag1 = true;
+        }
+        if(dividend &lt; 0){
+            dividend = 0 - dividend;
+            flag1 = true;
+        }
+        if(divisor &lt; 0){
+            divisor = 0 - divisor;
+            flag2 = true;
+        }
+        if(dividend &lt; divisor)
+            return 0;
+        int count = 0;
+        while(dividend &gt;= divisor){
+            int temp = divisor;
+            int temp_count = 1;
+            while((dividend &gt;= (temp &lt;&lt; 1)) &amp;&amp; (temp &lt; INT_MAX/2)){
+                temp = temp &lt;&lt; 1;
+                temp_count = temp_count &lt;&lt; 1;
+            }
+            dividend = dividend - temp;
+            count = count + temp_count;
+        }
+        if(change){
+            dividend++;
+            if(dividend == divisor)
+                count++;
+        }
+        if((flag1 &amp;&amp; flag2) || (!flag1 &amp;&amp; !flag2))
+            return count;
+        else 
+            return 0 - count;
+    }</code></pre>
+<hr>
+<h4 id="类别六：回溯算法的应用"><a href="#类别六：回溯算法的应用" class="headerlink" title="类别六：回溯算法的应用"></a><em>类别六：回溯算法的应用</em></h4><h5 id="17、电话号码的字母组合-medium"><a href="#17、电话号码的字母组合-medium" class="headerlink" title="17、电话号码的字母组合(medium)"></a>17、电话号码的字母组合(medium)</h5><p><em>题目描述：</em></p>
+<p>给定一个仅包含数字 <code>2-9</code> 的字符串，返回所有它能表示的字母组合。</p>
+<p>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+<p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc17-A.png" srcset="/img/loading.gif" alt></p>
+<p><em>示例：</em></p>
+<p><img src="/2020/03/24/%E7%9A%AE%E5%8D%A1%E4%B8%98422%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/lc17-B.png" srcset="/img/loading.gif" alt></p>
+<p><em>思考：</em></p>
+<p>本题是一道经典的回溯问题，何谓回溯，就是我试着走，走错了再反悔就是了。关键步骤就是在尝试与撤销中。如果尝试成功，那么我就继续试，直到得到答案；如果尝试失败，我就撤销这次尝试，更换新的尝试。回溯算法适合输出多组满足条件的集合值。本题中依靠数字来映射不同的字母，就完美符合回溯思想，映射完一项映射下一项，直到全部映射完毕。</p>
+<p><em>最终代码</em></p>
+<pre><code class="c++">vector&lt;string&gt; letterCombinations(string digits) {
+        vector&lt;string&gt; ans;
+        vector&lt;string&gt; number = {
+            &quot;abc&quot;,&quot;def&quot;,
+            &quot;ghi&quot;,&quot;jkl&quot;,&quot;mno&quot;,
+            &quot;pqrs&quot;,&quot;tuv&quot;,&quot;wxyz&quot;
+        };
+        vector&lt;int&gt; num;
+        int len = digits.size();
+        if(len == 0)
+            return ans;
+        for(int i = 0; i &lt; len; i++){
+            num.push_back(digits[i] - &#39;2&#39;);
+        }
+        string s;
+        backtrack(len, 0, s, ans, number, num);
+        sort(ans.begin(), ans.end());
+        return ans;
+    }
+
+    void backtrack(int len, int n, string &amp;s, vector&lt;string&gt; &amp;ans, vector&lt;string&gt; &amp;number, vector&lt;int&gt; &amp;num){
+        if(n == len){
+            ans.push_back(s);
+            return;
+        }
+        int count = number[num[n]].size();
+        for(int j = 0; j &lt; count; j++){
+            s.push_back(number[num[n]][j]);
+            backtrack(len, n+1, s, ans, number, num);
+            s.pop_back();  
+        }
     }</code></pre>
 <hr>
 <h4 id="类别四：二分查找的应用-1"><a href="#类别四：二分查找的应用-1" class="headerlink" title="类别四：二分查找的应用"></a><em>类别四：二分查找的应用</em></h4><h5 id="4、寻找两个有序数组的中位数-hard-1"><a href="#4、寻找两个有序数组的中位数-hard-1" class="headerlink" title="4、寻找两个有序数组的中位数(hard)"></a>4、寻找两个有序数组的中位数(hard)</h5><p><em>题目描述：</em></p>

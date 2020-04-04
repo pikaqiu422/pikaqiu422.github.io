@@ -133,7 +133,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    225 字
+                    1.4k 字
                   </span>
                 
 
@@ -141,7 +141,7 @@
                   
                   <span class="post-meta">
                       <i class="far fa-clock"></i>
-                      1 分钟
+                      5 分钟
                   </span>
                 
 
@@ -194,6 +194,52 @@ int main()
     return 0;
 }</code></pre>
 <p>输出<strong>ABAB<del>B</del>A<del>B</del>A</strong></p>
+<hr>
+<h4 id="Date-2020-3-28"><a href="#Date-2020-3-28" class="headerlink" title="Date:2020-3-28"></a><em>Date:2020-3-28</em></h4><h4 id="1、-1"><a href="#1、-1" class="headerlink" title="1、"></a>1、</h4><p><img src="/2020/03/25/c++%E4%BB%8E%E9%9B%B6%E5%8D%95%E6%8E%92%E2%80%94%E2%80%94%E9%9A%BE%E9%A2%98%E9%94%99%E9%A2%98%E7%AF%87/20-3-28-1.png" srcset="/img/loading.gif" alt></p>
+<p>正确写法：<code>b[5]=*(b+5)</code>。</p>
+<h4 id="2、-1"><a href="#2、-1" class="headerlink" title="2、"></a>2、</h4><p><img src="/2020/03/25/c++%E4%BB%8E%E9%9B%B6%E5%8D%95%E6%8E%92%E2%80%94%E2%80%94%E9%9A%BE%E9%A2%98%E9%94%99%E9%A2%98%E7%AF%87/20-3-28-2.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/03/25/c++%E4%BB%8E%E9%9B%B6%E5%8D%95%E6%8E%92%E2%80%94%E2%80%94%E9%9A%BE%E9%A2%98%E9%94%99%E9%A2%98%E7%AF%87/20-3-28-2%E7%AD%94.png" srcset="/img/loading.gif" alt></p>
+<h4 id="3、"><a href="#3、" class="headerlink" title="3、"></a>3、</h4><p><img src="/2020/03/25/c++%E4%BB%8E%E9%9B%B6%E5%8D%95%E6%8E%92%E2%80%94%E2%80%94%E9%9A%BE%E9%A2%98%E9%94%99%E9%A2%98%E7%AF%87/20-3-28-3.png" srcset="/img/loading.gif" alt></p>
+<p>【解释】格式字符必须小写，题中的”%8U”不会当作格式控制符，而是原样输出，变</p>
+<p>量a将没有对应的格式说明，也不会输出。所以正确答案为B（注意：在VC下结果为U）。</p>
+<h4 id="4、"><a href="#4、" class="headerlink" title="4、"></a>4、</h4><p><img src="/2020/03/25/c++%E4%BB%8E%E9%9B%B6%E5%8D%95%E6%8E%92%E2%80%94%E2%80%94%E9%9A%BE%E9%A2%98%E9%94%99%E9%A2%98%E7%AF%87/20-3-28-4.png" srcset="/img/loading.gif" alt></p>
+<p>A正确。</p>
+<p>B二维数组最后一维必须有值。***数组只能省略第一维（感谢评论提醒）</p>
+<p>CD都超出长度，最后有”\0”</p>
+<h4 id="5、"><a href="#5、" class="headerlink" title="5、"></a>5、</h4><p><img src="/2020/03/25/c++%E4%BB%8E%E9%9B%B6%E5%8D%95%E6%8E%92%E2%80%94%E2%80%94%E9%9A%BE%E9%A2%98%E9%94%99%E9%A2%98%E7%AF%87/20-3-28-5.png" srcset="/img/loading.gif" alt></p>
+<p>忽略了第一次i++将先执行，所以不包含“11”。</p>
+<h4 id="6、"><a href="#6、" class="headerlink" title="6、"></a>6、</h4><p><img src="/2020/03/25/c++%E4%BB%8E%E9%9B%B6%E5%8D%95%E6%8E%92%E2%80%94%E2%80%94%E9%9A%BE%E9%A2%98%E9%94%99%E9%A2%98%E7%AF%87/20-3-28-6.png" srcset="/img/loading.gif" alt></p>
+<p>先分析一下函数的复杂度： </p>
+<p>f(n) = f(n-1)+f(n-2)+….+f(2)+f(1) +f(0)<br>   = 2( f(n-2)+ f(n-3)+….+f(2)+f(1) +f(0))</p>
+<p>   =4( f(n-3) +f(n-4)+….+f(2)+f(1) +f(0))<br>   …<br>   = 2^(n-1)*f(0)</p>
+<p>复杂度为O(2^(n-1))<br>n = 35时,计算量为2^34<br>主流PC机的每秒钟计算量约为10^7~10^8次</p>
+<p>因此计算时间大约在几分钟</p>
+<hr>
+<h4 id="Date-2020-3-30"><a href="#Date-2020-3-30" class="headerlink" title="Date:2020-3-30"></a><em>Date:2020-3-30</em></h4><h4 id="1、-2"><a href="#1、-2" class="headerlink" title="1、"></a>1、</h4><p><img src="/2020/03/25/c++%E4%BB%8E%E9%9B%B6%E5%8D%95%E6%8E%92%E2%80%94%E2%80%94%E9%9A%BE%E9%A2%98%E9%94%99%E9%A2%98%E7%AF%87/20-3-30-1.png" srcset="/img/loading.gif" alt></p>
+<p>先来计算Z的值，Z将替换成Y<em>X/2，再把X+1替换Y，得Z=X+1</em></p>
+<p>X/2，再用5替换X，得Z=5+1*5/2，所以Z的值是7（注意整除）。a=Y宏替换后</p>
+<p>变成a=X+1，再将5替换X，得a=5+1，即a的值是6，但输出是–a，a先减1即</p>
+<p>变为5，再输出。故正确答案是D。</p>
+<h4 id="2、-2"><a href="#2、-2" class="headerlink" title="2、"></a>2、</h4><p><img src="/2020/03/25/c++%E4%BB%8E%E9%9B%B6%E5%8D%95%E6%8E%92%E2%80%94%E2%80%94%E9%9A%BE%E9%A2%98%E9%94%99%E9%A2%98%E7%AF%87/20-3-30-2.png" srcset="/img/loading.gif" alt></p>
+<p>结构体变量不管其包含有多少个成员，都应当看成是一个整体。在程序运行</p>
+<p>期间，只要在变量的生存期内，所有成员一直驻留在内存中，不可能出现有的成员驻留内</p>
+<p>存，有的成员不驻留内存的情况。故选择答案是A。</p>
+<h4 id="3、-1"><a href="#3、-1" class="headerlink" title="3、"></a>3、</h4><p><img src="/2020/03/25/c++%E4%BB%8E%E9%9B%B6%E5%8D%95%E6%8E%92%E2%80%94%E2%80%94%E9%9A%BE%E9%A2%98%E9%94%99%E9%A2%98%E7%AF%87/20-3-30-3.png" srcset="/img/loading.gif" alt></p>
+<p>函数重载（overload）<br>函数重载是指在一个类中声明多个名称相同但参数列表不同的函数，这些的参数可能个数或顺序，类型不同，但是不能靠返回类型来判断。特征是：<br>（1）相同的范围（在同一个作用域中）；<br>（2）函数名字相同；<br>（3）参数不同；<br>（4）virtual 关键字可有可无（注：函数重载与有无virtual修饰无关）；<br>（5）返回值可以不同；</p>
+<p>函数重写（也称为覆盖 override）<br>函数重写是指子类重新定义基类的虚函数。特征是：<br>（1）不在同一个作用域（分别位于派生类与基类）；<br>（2）函数名字相同；<br>（3）参数相同；<br>（4）基类函数必须有 virtual 关键字，不能有 static 。<br>（5）返回值相同，否则报错；<br>（6）重写函数的访问修饰符可以不同；</p>
+<p>重定义（也称隐藏）<br>（1）不在同一个作用域（分别位于派生类与基类） ；<br>（2）函数名字相同；<br>（3）返回值可以不同；<br>（4）参数不同。此时，不论有无 virtual 关键字，基类的函数将被隐藏（注意别与重载以及覆盖混淆）；<br>（5）参数相同，但是基类函数没有 virtual关键字。此时，基类的函数被隐藏（注意别与覆盖混淆）；</p>
+<h4 id="4、-1"><a href="#4、-1" class="headerlink" title="4、"></a>4、</h4><p><img src="/2020/03/25/c++%E4%BB%8E%E9%9B%B6%E5%8D%95%E6%8E%92%E2%80%94%E2%80%94%E9%9A%BE%E9%A2%98%E9%94%99%E9%A2%98%E7%AF%87/20-3-30-4.png" srcset="/img/loading.gif" alt></p>
+<p>p 是 int 的指针类型，scanf 要求 %d 相应参数也是 int 的指针类型，A即可。</p>
+<p>B 项， &amp;p 又取了一次 p 的地址，相当于指针的指针， scanf 尝试写入原本是指针的地址，导致 p 的值被改变（本应写入 p 指向的内存），后续解引用 *p 可能导致访问非法内存 产生运行时读内存错误。</p>
+<p>C 项， *p 解引用取值，是一个未初始化的乱值， scanf 会把该值当作地址，可能导致运行时写内存错误或写入不被期望的内存区域。</p>
+<p>D 项， p 只是一次指针， **p 会编译错误。</p>
+<h4 id="5、-1"><a href="#5、-1" class="headerlink" title="5、"></a>5、</h4><p><img src="/2020/03/25/c++%E4%BB%8E%E9%9B%B6%E5%8D%95%E6%8E%92%E2%80%94%E2%80%94%E9%9A%BE%E9%A2%98%E9%94%99%E9%A2%98%E7%AF%87/20-3-30-5.png" srcset="/img/loading.gif" alt></p>
+<p>A选项，C++中可以通过对象名和成员运算符访问对象中的成员</p>
+<p>B选项，通过对象的引用变量来访问对象中的成员，如果为一个对象定义了一个引用变量，它们是共占同一段存储单元的，实际上它们是同一个对象，只是用不同的名字表示而已。因此完全可以通过引用变量来访问对象中的成员。</p>
+<p>C选项，类的成员为公有的，即可以被该类的所有成员所访问</p>
+<p>D选项，如果类A把类B声明为自己的友元类，那么在类B中的所有函数中都可以访问类A的私用和保护成员。</p>
+<h4 id="6、-1"><a href="#6、-1" class="headerlink" title="6、"></a>6、</h4><p><img src="/2020/03/25/c++%E4%BB%8E%E9%9B%B6%E5%8D%95%E6%8E%92%E2%80%94%E2%80%94%E9%9A%BE%E9%A2%98%E9%94%99%E9%A2%98%E7%AF%87/20-3-30-6.png" srcset="/img/loading.gif" alt></p>
+<p>B项，<br><code>HANDLE hThread = GetCurrentThread();</code><br>获取当前线程的一个伪句柄。该句柄可以复制，但不可继承。不能调用CloseHandle函数来关闭这个句柄。<br>C项<br><code>int sock_fd=socket( int af, int type, int protocol);</code><br>如果调用成功就返回新创建的套接字的描述符，如果失败就返回INVALID_SOCKET（Linux下失败返回-1）</p>
 
             </div>
             <hr>
